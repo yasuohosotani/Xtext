@@ -1,0 +1,15 @@
+TetCase:sample
+Flows:
+Flow,node1,node2,Result
+#1,class1,class1,result1
+#2,class1,class2,result1
+#3,class2,,result2
+FlowDetails:
+Flow,node1,node2,Result
+#1-1,data1,data1,result1
+#1-2,data2,data1,result1
+#2-1,data1,data3,result1
+#2-2,data2,data4,result1
+#3-1,data3,,result2
+#3-2,data4,,result2
+#3-3,data5,,result2
