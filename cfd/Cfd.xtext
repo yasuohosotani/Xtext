@@ -1,0 +1,46 @@
+grammar org.xtext.testing.cfd.Cfd with org.eclipse.xtext.common.Terminals
+
+generate cfd "http://www.xtext.org/testing/cfd/Cfd"
+
+Model:
+	testCases+=TestCase*;
+	
+TestCase:
+	'TestCase' name=ID '{'
+		'Caption' caption=STRING
+		'Results' '{'
+			results+=Result*
+		'}'
+		'Nodes' '{'
+			nodes+=Node*
+		'}'
+		'Flows' '{'
+			flows+=Flow*
+		'}'
+	'}'
+	;
+Result:
+	name=ID '{'
+		'Caption' caption=STRING
+	'}'
+;
+Node:
+	name=ID '{'
+		'Caption' caption=STRING
+		'EquiValenceClasses' '{'
+			equiValenceClasses+=EquiValenceClass*
+		'}'
+	'}'
+;
+EquiValenceClass:
+	name=ID '{'
+		'Caption' caption=STRING
+		'Data' data+=STRING*
+	'}'
+;
+Flow:
+	caption=STRING":"firstClasses=ReferenceClass("->"nextClasses+=ReferenceClass)*"=>"result=[Result]
+;
+ReferenceClass:
+	node=[Node]"."equiValenceClass=[EquiValenceClass]
+;
